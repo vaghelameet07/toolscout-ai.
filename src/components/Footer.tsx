@@ -1,12 +1,18 @@
 import React from 'react';
 import { Mail, Github, Twitter } from 'lucide-react';
 
-const Footer = () => {
+interface FooterProps {
+  onPrivacyClick: () => void;
+  onTermsClick: () => void;
+  onSubmitClick: () => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onPrivacyClick, onTermsClick, onSubmitClick }) => {
   return (
     <footer className="bg-[#080808] border-t border-white/5 py-12 px-6 mt-20">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
         <div>
-          <h3 className="text-white font-black italic uppercase mb-4">Tool<span className="text-blue-600">Scout</span></h3>
+          <h3 className="text-white font-black italic uppercase mb-4 text-xl">Tool<span className="text-blue-600">Scout</span></h3>
           <p className="text-gray-500 text-sm leading-relaxed">
             The ultimate directory for content creators. Find the best AI tools to scale your content game.
           </p>
@@ -14,9 +20,9 @@ const Footer = () => {
         <div>
           <h4 className="text-white font-bold mb-4">Quick Links</h4>
           <ul className="space-y-2 text-sm text-gray-500">
-            <li><a href="/privacy" className="hover:text-blue-500 transition-colors">Privacy Policy</a></li>
-            <li><a href="/terms" className="hover:text-blue-500 transition-colors">Terms of Service</a></li>
-            <li><a href="/submit" className="hover:text-blue-500 transition-colors">Submit a Tool</a></li>
+            <li><button onClick={onPrivacyClick} className="hover:text-blue-500 transition-colors">Privacy Policy</button></li>
+            <li><button onClick={onTermsClick} className="hover:text-blue-500 transition-colors">Terms of Service</button></li>
+            <li><button onClick={onSubmitClick} className="hover:text-blue-500 transition-colors">Submit a Tool</button></li>
           </ul>
         </div>
         <div>
@@ -28,8 +34,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="text-center mt-12 pt-8 border-t border-white/5 text-gray-600 text-xs">
-        © 2026 ToolScout AI. All rights reserved.
+      <div className="text-center mt-12 pt-8 border-t border-white/5 text-gray-600 text-xs font-medium">
+        © 2026 TOOLSCOUT AI. BUILT FOR CREATORS.
       </div>
     </footer>
   );
