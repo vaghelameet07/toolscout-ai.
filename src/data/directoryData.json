@@ -1,0 +1,61 @@
+{
+  "categories": ["All", "Video", "Text", "Image", "Audio", "SEO"],
+  "tools": [
+    {
+      "id": "captions",
+      "name": "Auto-Viral Captions",
+      "desc": "Add influencer-style subtitles automatically to your videos.",
+      "category": "Video",
+      "icon": "Video",
+      "pro": true
+    },
+    {
+      "id": "script",
+      "name": "1-Click Script Writer",
+      "desc": "Generate viral scripts for YouTube, Reels & Ads in seconds.",
+      "category": "Text",
+      "icon": "FileText",
+      "pro": true
+    },
+    {
+      "id": "upscale",
+      "name": "4K Image Upscaler",
+      "desc": "Convert low-res photos to ultra-HD quality using AI.",
+      "category": "Image",
+      "icon": "ImageIcon",
+      "pro": false
+    },
+    {
+      "id": "voice",
+      "name": "Ultra-Human Voice",
+      "desc": "Hyper-realistic AI voiceovers in any language.",
+      "category": "Audio",
+      "icon": "Mic",
+      "pro": true
+    },
+    {
+      "id": "seo",
+      "name": "SEO Deep-Rank",
+      "desc": "Generate high-ranking tags, titles and descriptions.",
+      "category": "SEO",
+      "icon": "BarChart3",
+      "pro": false
+    },
+    {
+      "id": "thumbnail",
+      "name": "Thumbnail AI",
+      "desc": "Generate high-CTR thumbnails for your videos.",
+      "category": "Image",
+      "icon": "ImageIcon",
+      "pro": true
+    },
+    {
+      "id": "repurpose",
+      "name": "Video Repurpose",
+      "desc": "Turn 1 long YouTube video into 10 viral Reels/Shorts.",
+      "category": "Video",
+      "icon": "Video",
+      "pro": true
+    }
+  ]
+    }
