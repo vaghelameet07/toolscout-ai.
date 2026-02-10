@@ -1,13 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ToolScout AI | Ultimate AI Content Tools</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToolScout - AI Powerhouse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-cyan: #4ed9ff;
+            --bg-black: #050505;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER SECTION --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 5%;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--primary-cyan);
+        }
+
+        .menu-icon {
+            cursor: pointer;
+        }
+
+        .menu-icon div {
+            width: 25px;
+            height: 2px;
+            background-color: var(--primary-cyan);
+            margin: 6px 0;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        /* The Pill Badge from your Screenshot */
+        .premium-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            margin-bottom: 30px;
+        }
+
+        .glow-dot {
+            width: 4px;
+            height: 10px;
+            background: var(--primary-cyan);
+            border-radius: 2px;
+            box-shadow: 0 0 12px var(--primary-cyan);
+            margin-right: 15px;
+        }
+
+        .badge-text {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #999;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 3rem;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            background: linear-gradient(to bottom, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- TOOLS GRID --- */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 40px 5%;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .tool-card:hover {
+            border-color: var(--primary-cyan);
+            transform: translateY(-5px);
+        }
+
+        .tool-card h3 {
+            color: var(--primary-cyan);
+            margin-top: 0;
+        }
+
+        .tool-card p {
+            color: #aaa;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Tool<span>Scout</span></div>
+        <div class="menu-icon">
+            <div></div>
+            <div></div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="premium-badge">
+            <div class="glow-dot"></div>
+            <div class="badge-text">THE ULTIMATE AI POWERHOUSE FOR CREATORS</div>
+        </div>
+        <h1>Discover the Future of AI Tools</h1>
+    </section>
+
+    <section class="tools-grid">
+        <div class="tool-card">
+            <h3>ChatGPT</h3>
+            <p>Advanced conversational AI for writing, coding, and brainstorming.</p>
+        </div>
+        <div class="tool-card">
+            <h3>Midjourney</h3>
+            <p>Highest quality AI image generation for stunning visuals.</p>
+        </div>
+        <div class="tool-card">
+            <h3>More Tools...</h3>
+            <p>Working on adding the full list of 20 premium AI tools here.</p>
+        </div>
+    </section>
+
+</body>
 </html>
