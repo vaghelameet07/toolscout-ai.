@@ -1,26 +1,28 @@
 import React from 'react';
-import { Zap } from 'lucide-react';
+import { Search, Menu } from 'lucide-react';
 
 interface HeaderProps {
-  onLogoClick?: () => void;
+  onLogoClick: () => void;
+  onSubmitClick: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ onLogoClick }) => {
+const Header: React.FC<HeaderProps> = ({ onLogoClick, onSubmitClick }) => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100] bg-black/80 backdrop-blur-md border-b border-white/5 h-16 px-6 flex justify-between items-center">
-      <div className="flex items-center gap-2 cursor-pointer" onClick={onLogoClick}>
-        <div className="bg-blue-600 p-1.5 rounded-lg">
-          <Zap size={18} fill="white" className="text-white" />
-        </div>
-        <span className="text-xl font-black tracking-tighter italic uppercase text-white">
-          TOOL<span className="text-blue-600">SCOUT</span>
-        </span>
+    <nav className="flex justify-between items-center py-8 px-6 max-w-7xl mx-auto border-b border-white/5">
+      <div onClick={onLogoClick} className="cursor-pointer group">
+        <h1 className="text-3xl font-black italic uppercase tracking-tighter text-white">
+          TOOL<span className="text-blue-600 group-hover:text-blue-400 transition-colors">SCOUT</span>
+        </h1>
       </div>
-      <nav className="hidden md:flex items-center gap-6">
-        <a href="/" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">Directory</a>
-        <a href="/submit" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">Submit Tool</a>
-      </nav>
-    </header>
+      <div className="flex items-center gap-8">
+        <button 
+          onClick={onSubmitClick}
+          className="bg-white text-black px-8 py-3 rounded-full font-black italic uppercase text-sm hover:bg-blue-600 hover:text-white transition-all transform hover:scale-105 active:scale-95 shadow-xl"
+        >
+          Submit Tool
+        </button>
+      </div>
+    </nav>
   );
 };
 
