@@ -1,96 +1,70 @@
-import React, { useState, useEffect } from 'react';
+      import React, { useState } from 'react';
 import { Search, Sparkles, ArrowRight } from 'lucide-react';
-import directoryData from '../data/directoryData.json';
+import toolsData from '../data/directoryData.json';
+import { Tool } from '../types';
 
 interface DirectoryPageProps {
-  onToolClick: (tool: any) => void;
+  onToolClick: (tool: Tool) => void;
 }
 
 const DirectoryPage: React.FC<DirectoryPageProps> = ({ onToolClick }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [wordIndex, setWordIndex] = useState(0);
-  const words = ['Video Editor', 'Script Writer', 'SEO Expert', 'Thumbnail Designer'];
+  const [search, setSearch] = useState('');
+  const tools: Tool[] = toolsData as Tool[];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % words.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
-
-  const filteredTools = directoryData.tools.filter(tool => {
-    const matchesSearch = tool.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                         tool.desc.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'All' || tool.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const filteredTools = tools.filter(tool => 
+    tool.name.toLowerCase().includes(search.toLowerCase()) ||
+    tool.desc.toLowerCase().includes(search.toLowerCase()) ||
+    tool.category.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <div className="animate-in fade-in duration-700">
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000">
       {/* Hero Section */}
-      <div className="text-center mb-16 pt-10">
-        <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter italic uppercase text-white">
-          Find the perfect <br />
-          <span className="bg-gradient-to-r from-blue-400 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
-            AI {words[wordIndex]}
-          </span>
+      <div className="text-center mb-16 pt-16">
+        <h1 className="text-6xl md:text-9xl font-black italic uppercase tracking-tighter text-white mb-8 leading-[0.85]">
+          Find the Perfect <br />
+          <span className="text-blue-600 outline-text">AI Companion</span>
         </h1>
-        
-        {/* Search Bar */}
-        <div className="relative max-w-2xl mx-auto mt-12 px-4">
-          <Search className="absolute left-10 top-1/2 -translate-y-1/2 text-gray-500" size={20} />
-          <input 
-            type="text" 
-            placeholder="Search 1000+ AI tools..." 
-            className="w-full bg-[#0e0e0e] border border-white/10 rounded-3xl py-6 px-16 focus:outline-none focus:border-blue-600/50 text-white shadow-2xl"
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
+        <p className="text-gray-500 text-xl max-w-2xl mx-auto font-medium tracking-tight">
+          The ultimate directory for content creators. Find the best AI tools to scale your game.
+        </p>
+      </div>
 
-        {/* Categories */}
-        <div className="flex flex-wrap justify-center gap-3 mt-10 px-4">
-          {directoryData.categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${
-                selectedCategory === cat 
-                ? 'bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.4)]' 
-                : 'bg-white/5 text-gray-400 hover:bg-white/10'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+      {/* Search Bar */}
+      <div className="relative max-w-2xl mx-auto mb-24">
+        <Search className="absolute left-8 top-1/2 -translate-y-1/2 text-gray-500" size={28} />
+        <input 
+          type="text"
+          placeholder="Search for tools, categories, or niches..."
+          className="w-full bg-[#0c0c0c] border-2 border-white/5 rounded-full py-8 px-20 text-2xl focus:outline-none focus:border-blue-600 transition-all shadow-2xl placeholder:text-gray-700 text-white"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </div>
 
       {/* Tools Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
         {filteredTools.map(tool => (
           <div 
-            key={tool.id} 
+            key={tool.id}
             onClick={() => onToolClick(tool)}
-            className="group bg-[#0c0c0c] border border-white/5 rounded-[32px] p-8 hover:bg-[#111] hover:border-blue-600/50 transition-all cursor-pointer relative overflow-hidden"
+            className="group bg-[#0c0c0c] border border-white/5 p-10 rounded-[2.5rem] hover:border-blue-600/50 transition-all cursor-pointer relative overflow-hidden"
           >
-            {tool.pro && (
-              <div className="absolute top-4 right-4 bg-blue-600/10 text-blue-500 text-[10px] font-black px-3 py-1 rounded-full border border-blue-500/20 uppercase tracking-widest">
-                Pro Tool
+            <div className="relative z-10">
+              <div className="flex justify-between items-start mb-8">
+                <div className="p-5 bg-blue-600/10 rounded-2xl text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                  <Sparkles size={28} />
+                </div>
+                {tool.pro && <span className="text-[10px] font-black bg-blue-600 text-white px-4 py-1.5 rounded-full tracking-widest uppercase shadow-lg">PRO</span>}
               </div>
-            )}
-            <div className="mb-6 p-3 bg-blue-600/10 w-fit rounded-2xl text-blue-500 group-hover:scale-110 transition-transform">
-              <Sparkles size={24} />
+              <h3 className="text-3xl font-bold text-white mb-3 group-hover:text-blue-500 transition-colors">{tool.name}</h3>
+              <p className="text-gray-500 text-base leading-relaxed mb-8 font-medium">{tool.desc}</p>
+              <div className="flex justify-between items-center">
+                <div className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">{tool.category}</div>
+                <ArrowRight className="text-white opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all" size={20} />
+              </div>
             </div>
-            <h3 className="text-2xl font-black mb-2 italic uppercase text-white group-hover:text-blue-500 transition-colors">
-              {tool.name}
-            </h3>
-            <p className="text-gray-500 text-sm leading-relaxed mb-6">
-              {tool.desc}
-            </p>
-            <div className="flex items-center text-blue-500 font-bold text-sm uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0">
-              Try Now <ArrowRight size={16} className="ml-2" />
-            </div>
+            <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-blue-600/5 rounded-full blur-3xl group-hover:bg-blue-600/20 transition-all"></div>
           </div>
         ))}
       </div>
@@ -99,4 +73,3 @@ const DirectoryPage: React.FC<DirectoryPageProps> = ({ onToolClick }) => {
 };
 
 export default DirectoryPage;
-                                                   
